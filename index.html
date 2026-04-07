@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivan Nandira — Web Developer & Data Analyst</title>
+  <meta name="description" content="Portfolio of Ivan Nandira — Informatics student passionate about Web Development and Data Analysis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">Vanzz</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#photography" class="nav-link">📷 Foto</a></li>
+        <li><a href="#contact" class="nav-link nav-link--cta">Say Hi ✌️</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+    <!-- Mobile overlay -->
+    <div class="nav-mobile" id="navMobile">
+      <ul class="nav-mobile-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#photography" class="nav-link">📷 Foto</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Hero Section ===== -->
+  <section id="hero" class="hero">
+    <div class="container hero-content">
+      <!-- Left: Text content -->
+      <div class="hero-left">
+        <div class="hero-badge animate-on-scroll">
+          <span>👋 Available for work</span>
+        </div>
+        <h1 class="hero-name animate-on-scroll">
+          Hi, I'm <span class="highlight-yellow">Ivan</span><br>
+          <span class="highlight-blue">Nandira</span>
+        </h1>
+        <p class="hero-title animate-on-scroll">Web Developer & Data Analyst Enthusiast</p>
+        <p class="hero-description animate-on-scroll">
+          I craft clean, responsive websites and turn raw data into meaningful insights.
+          Currently an Informatics student building real-world solutions.
+        </p>
+        <div class="hero-cta animate-on-scroll">
+          <a href="#projects" class="btn btn-primary">View Projects →</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- Right: Profile card + Stats -->
+      <div class="hero-right animate-on-scroll">
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <div class="profile-img-wrap">
+            <img src="photos/profile.jpg" alt="Ivan Nandira" class="profile-img" />
+          </div>
+          <div class="profile-info">
+            <span class="profile-name">Ivan Nandira</span>
+            <span class="profile-role">💻 Dev &amp; 📊 Analyst</span>
+            <span class="profile-location">📍 Bandar Lampung, ID</span>
+          </div>
+        </div>
+        <!-- Floating stickers outside card -->
+        <div class="card-sticker card-sticker--1">✨</div>
+        <div class="card-sticker card-sticker--2">📸</div>
+        <div class="card-sticker card-sticker--3">⚡</div>
+
+        <!-- Stats Row -->
+        <div class="hero-stats">
+          <div class="stat-card stat-card--yellow">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-card stat-card--blue">
+            <span class="stat-number">8+</span>
+            <span class="stat-label">Tech Skills</span>
+          </div>
+          <div class="stat-card stat-card--pink">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">☕ Coffee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About Section ===== -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">About Me</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text animate-on-scroll">
+          <h2>I'm an <span class="highlight-pink">Informatics student</span> who loves building things with code.</h2>
+          <p>
+            My journey in tech started with curiosity about how websites work — and quickly
+            expanded into the world of databases, data visualization, and problem-solving.
+            I enjoy working at the intersection of <strong>development and data</strong>,
+            creating functional digital products while applying analytical thinking.
+          </p>
+        </div>
+        <div class="about-cards animate-on-scroll">
+          <div class="info-card info-card--yellow">
+            <span class="info-card-emoji">🎓</span>
+            <h3>Education</h3>
+            <p>Informatics Student</p>
+          </div>
+          <div class="info-card info-card--blue">
+            <span class="info-card-emoji">🎯</span>
+            <h3>Focus</h3>
+            <p>Web Dev & Data Analysis</p>
+          </div>
+          <div class="info-card info-card--pink">
+            <span class="info-card-emoji">🚀</span>
+            <h3>Goal</h3>
+            <p>Future Pro Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills Section ===== -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Tech Stack</span>
+      </div>
+      <h2 class="section-heading animate-on-scroll">Tools & technologies I work with</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card skill-card--yellow animate-on-scroll">
+          <h3>🌐 Frontend</h3>
+          <div class="skill-pills">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-card skill-card--blue animate-on-scroll">
+          <h3>📊 Data & Database</h3>
+          <div class="skill-pills">
+            <span class="pill">Python</span>
+            <span class="pill">MySQL</span>
+            <span class="pill">Firebase</span>
+            <span class="pill">Data Analysis</span>
+            <span class="pill">Data Visualization</span>
+          </div>
+        </div>
+
+        <div class="skill-card skill-card--pink animate-on-scroll">
+          <h3>🛠️ Tools</h3>
+          <div class="skill-pills">
+            <span class="pill">Git</span>
+            <span class="pill">GitHub</span>
+            <span class="pill">VS Code</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects Section ===== -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Projects</span>
+      </div>
+      <h2 class="section-heading animate-on-scroll">Things I've built ✨</h2>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <a href="https://kedaiatap.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card project-card--yellow animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">☕</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <h3>Kedai Atap</h3>
+          <p>A modern landing page for a café & collaboration space in Bandar Lampung with interactive menu and event section.</p>
+          <div class="project-pills">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="https://edu-kids-infinite.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card project-card--blue animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">🎮</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <h3>EduKids Infinite</h3>
+          <p>An interactive educational platform for children with gamified learning, custom avatars, and daily activity tracking.</p>
+          <div class="project-pills">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </a>
+
+        <!-- Project 3 -->
+        <a href="https://profil-desa-penengahan.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card project-card--pink animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">🏘️</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <h3>Profil Desa Penengahan</h3>
+          <p>A village profile website showcasing community info and administrative details with modern web technology.</p>
+          <div class="project-pills">
+            <span>React</span>
+            <span>Vite</span>
+            <span>CSS</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Photography Section ===== -->
+  <section id="photography" class="section photography">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag section-tag--purple">Photography</span>
+      </div>
+      <h2 class="section-heading animate-on-scroll">Through the lens 📷</h2>
+      <p class="photo-intro animate-on-scroll">
+        Di luar dunia coding, saya suka mengabadikan momen lewat lensa kamera —
+        dari <strong>pemandangan alam</strong>, <strong>foto jalanan</strong>, hingga
+        detail kecil yang sering terlewat. Setiap foto punya ceritanya sendiri.
+      </p>
+
+      <!-- Photo Grid -->
+      <div class="photo-grid">
+        <!-- Photo 1 -->
+        <div class="photo-item photo-item--landscape animate-on-scroll" data-index="0">
+          <div class="photo-img" style="background-image: url('photos/CRE05985.JPG')">
+            <div class="photo-overlay">
+              <span class="photo-label">📸 Portrait</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="photo-item animate-on-scroll" data-index="1">
+          <div class="photo-img" style="background-image: url('photos/CRE05333.JPG')">
+            <div class="photo-overlay">
+              <span class="photo-label">🎞️ Candid</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="photo-item animate-on-scroll" data-index="2">
+          <div class="photo-img" style="background-image: url('photos/DSC_7011.JPG')">
+            <div class="photo-overlay">
+              <span class="photo-label">🌿 Nature</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="photo-item animate-on-scroll" data-index="3">
+          <div class="photo-img" style="background-image: url('photos/IMG_6674.JPG')">
+            <div class="photo-overlay">
+              <span class="photo-label">🌄 Landscape</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="photo-item animate-on-scroll" data-index="4">
+          <div class="photo-img" style="background-image: url('photos/IMG_6803.JPG')">
+            <div class="photo-overlay">
+              <span class="photo-label">🌆 Street</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="photo-item animate-on-scroll" data-index="5">
+          <div class="photo-img" style="background-image: url('photos/IMG_6812.JPG')">
+            <div class="photo-overlay">
+              <span class="photo-label">✨ Moment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gear Info -->
+      <div class="photo-gear animate-on-scroll">
+        <div class="gear-badge">📸 Gear saya</div>
+        <div class="gear-pills">
+          <span class="gear-pill">-</span>
+          <span class="gear-pill">-</span>
+          <span class="gear-pill">-</span>
+          <span class="gear-pill">-</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Contact</span>
+      </div>
+      <h2 class="contact-heading animate-on-scroll">
+        Let's build something<br><span class="highlight-yellow">cool together.</span>
+      </h2>
+
+      <div class="contact-grid">
+        <div class="contact-links animate-on-scroll">
+          <a href="mailto:ivannandira@gmail.com" class="contact-card">
+            <span class="contact-card-icon">📧</span>
+            <div>
+              <strong>Email</strong>
+              <span>ivannandira@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://github.com/V4nzz" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <span class="contact-card-icon">🐙</span>
+            <div>
+              <strong>GitHub</strong>
+              <span>github.com/V4nzz</span>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/ivannandira" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <span class="contact-card-icon">💼</span>
+            <div>
+              <strong>LinkedIn</strong>
+              <span>linkedin.com/in/ivannandira</span>
+            </div>
+          </a>
+        </div>
+
+        <form class="contact-form animate-on-scroll" id="contactForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="What's your name?" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Send Message 🚀</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>Made with ☕ by <strong>Ivan Nandira</strong></p>
+      <p>&copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
