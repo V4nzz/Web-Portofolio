@@ -1,0 +1,23 @@
+{
+  "name": "web-portofolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Ivan Nandira - Web Developer & Data Analyst",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V4nzz/Web-Portofolio.git"
+  },
+  "keywords": ["portfolio", "web-developer", "data-analyst"],
+  "author": "Ivan Nandira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/V4nzz/Web-Portofolio/issues"
+  },
+  "homepage": "https://github.com/V4nzz/Web-Portofolio#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
