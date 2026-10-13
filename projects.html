@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showcase &amp; Portofolio Sistem — Vanz Studio</title>
+  <meta name="description" content="Showcase karya produksi sistem CBT, platform edukasi, portal sekolah, hingga modern web apps by Vanz Studio." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vanz Studio" />
+  <meta property="og:title" content="Showcase &amp; Portofolio Sistem — Vanz Studio" />
+  <meta property="og:description" content="Koleksi sistem dan website produksi: Solo Technopark CBT, SMA MuAD, Kedai Atap, dan lainnya." />
+  <meta property="og:url" content="https://ivannandira.my.id/projects.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">Vanz Studio</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="photography.html" class="nav-link">📷 Foto</a></li>
+        <li><a href="index.html#contact" class="nav-link nav-link--cta">Say Hi ✌️</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+    <!-- Mobile overlay -->
+    <div class="nav-mobile" id="navMobile">
+      <ul class="nav-mobile-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="photography.html" class="nav-link">📷 Foto</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Projects Header Hero ===== -->
+  <header class="section" style="padding-top: calc(var(--nav-height) + 2.5rem); padding-bottom: 2rem;">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Portfolio Showcase</span>
+      </div>
+      <h1 class="hero-name animate-on-scroll" style="font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1rem;">
+        Karya &amp; Sistem<br><span class="highlight-blue">Yang Pernah Dibangun</span>
+      </h1>
+      <p class="hero-description animate-on-scroll" style="max-width: 650px;">
+        Kompilasi web app produksi, sistem institusi skala besar, hingga aplikasi edukasi dan landing page bisnis.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== Projects Grid Section ===== -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container">
+      <div class="projects-grid">
+        <!-- Project 1: Solo Technopark CBT -->
+        <a href="https://cbt.solotechnopark.id/" target="_blank" rel="noopener noreferrer" class="project-card project-card--blue animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">🖥️</span>
+            <div class="project-header-right">
+              <span class="project-badge">Flagship</span>
+              <span class="project-arrow">↗</span>
+            </div>
+          </div>
+          <h3>Solo Technopark CBT System</h3>
+          <p>Sistem ujian berbasis komputer (CBT) modern dengan anti-contek (fullscreen lock &amp; visibility detection), auto-grading server-side, timer sinkron server, serta auto-parse bank soal via Gemini AI.</p>
+          <div class="project-pills">
+            <span>Next.js 14</span>
+            <span>TypeScript</span>
+            <span>Firebase Admin</span>
+            <span>Gemini AI</span>
+            <span>Tailwind CSS</span>
+          </div>
+        </a>
+
+        <!-- Project 2: SMA Muhammadiyah Ahmad Dahlan -->
+        <div class="project-card project-card--yellow animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">🏫</span>
+            <div class="project-header-right">
+              <span class="project-badge">Enterprise</span>
+            </div>
+          </div>
+          <h3>Sistem Terpadu SMA MuAD</h3>
+          <p>Ekosistem sistem sekolah terintegrasi: Modul PPDB Online berkas digital yang otomatis terhubung ke Sistem Keuangan &amp; Tagihan SPP via secure webhook, kode unik transfer, dan konfirmasi WhatsApp.</p>
+          <div class="project-links-row">
+            <a href="http://ppdb.smamuadmetro.sch.id/" target="_blank" rel="noopener noreferrer" class="project-sublink">PPDB Portal ↗</a>
+            <a href="http://keuangan.smamuadmetro.sch.id/" target="_blank" rel="noopener noreferrer" class="project-sublink">Keuangan Portal ↗</a>
+          </div>
+          <div class="project-pills">
+            <span>Supabase</span>
+            <span>Secure Webhook</span>
+            <span>Financial Billing</span>
+            <span>WhatsApp Direct</span>
+            <span>Multi-Role</span>
+          </div>
+        </div>
+
+        <!-- Project 3: Kedai Atap -->
+        <a href="https://kedaiatap.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card project-card--pink animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">☕</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <h3>Kedai Atap</h3>
+          <p>Modern web application &amp; digital ordering experience untuk café &amp; collaboration space di Bandar Lampung. Dilengkapi menu interaktif, event showcase, arsitektur cloud, dan integrasi payment gateway.</p>
+          <div class="project-pills">
+            <span>Next.js 14</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS</span>
+            <span>Firebase</span>
+            <span>Midtrans</span>
+          </div>
+        </a>
+
+        <!-- Project 4: EduKids Infinite -->
+        <a href="https://edu-kids-infinite.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card project-card--yellow animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">🎮</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <h3>EduKids Infinite</h3>
+          <p>An interactive educational platform for children with gamified learning, custom avatars, and daily activity tracking.</p>
+          <div class="project-pills">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </a>
+
+        <!-- Project 5: Profil Desa Penengahan -->
+        <a href="https://profil-desa-penengahan.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card project-card--blue animate-on-scroll">
+          <div class="project-card-header">
+            <span class="project-emoji">🏘️</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <h3>Profil Desa Penengahan</h3>
+          <p>A village profile website showcasing community info and administrative details with modern web technology.</p>
+          <div class="project-pills">
+            <span>React</span>
+            <span>Vite</span>
+            <span>CSS</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA Footer ===== -->
+  <section class="section">
+    <div class="container" style="text-align: center;">
+      <h2 class="section-heading animate-on-scroll">Ingin Bangun Sistem Serupa? 🚀</h2>
+      <p class="hero-description animate-on-scroll" style="margin: 0 auto 2rem auto;">
+        Dari landing page bisnis hingga platform sistem informasi kustom, mari wujudkan ide digitalmu.
+      </p>
+      <a href="https://wa.me/6285609681260?text=Halo%20Ivan,%20saya%20tertarik%20bikin%20sistem%20seperti%20di%20portofolio." target="_blank" rel="noopener noreferrer" class="btn btn-primary animate-on-scroll">
+        Mulai Konsultasi Projek 💬
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>Made with ☕ by <strong>Ivan Nandira</strong></p>
+      <p>&copy; 2026</p>
+    </div>
+  </footer>
+
+  <!-- ===== Floating WhatsApp Button ===== -->
+  <a href="https://wa.me/6285609681260?text=Halo%20Ivan,%20saya%20mau%20konsultasi%20pembuatan%20website/sistem." class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
+    <span class="floating-wa-icon">💬</span>
+    <span class="floating-wa-text">Chat Ivan</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

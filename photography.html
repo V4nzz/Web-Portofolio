@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Through the Lens — Vanz Studio</title>
+  <meta name="description" content="Karya fotografi visual dan jepretan lensa by Ivan Nandira (Vanz Studio)." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vanz Studio" />
+  <meta property="og:title" content="Through the Lens — Vanz Studio" />
+  <meta property="og:description" content="Koleksi fotografi jalanan, momen alam, dan cerita visual lensa kamera." />
+  <meta property="og:url" content="https://ivannandira.my.id/photography.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">Vanz Studio</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="photography.html" class="nav-link active">📷 Foto</a></li>
+        <li><a href="index.html#contact" class="nav-link nav-link--cta">Say Hi ✌️</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+    <!-- Mobile overlay -->
+    <div class="nav-mobile" id="navMobile">
+      <ul class="nav-mobile-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="photography.html" class="nav-link active">📷 Foto</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Photography Header Hero ===== -->
+  <header class="section" style="padding-top: calc(var(--nav-height) + 2.5rem); padding-bottom: 2rem;">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag section-tag--purple">Photography</span>
+      </div>
+      <h1 class="hero-name animate-on-scroll" style="font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1rem;">
+        Through The Lens 📷<br><span class="highlight-pink">Stories &amp; Moments</span>
+      </h1>
+      <p class="photo-intro animate-on-scroll" style="max-width: 650px;">
+        Di luar dunia coding, saya suka mengabadikan momen lewat lensa kamera — dari pemandangan alam, foto jalanan, hingga detail kecil yang sering terlewat. Setiap foto punya ceritanya sendiri.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== Photo Grid Section ===== -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container">
+      <div class="photo-grid">
+        <!-- Photo 1 -->
+        <div class="photo-item photo-item--landscape animate-on-scroll" data-index="0">
+          <div class="photo-img" style="background-image: url('photos/CRE05985.webp')">
+            <div class="photo-overlay">
+              <span class="photo-label">📸 Portrait</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="photo-item animate-on-scroll" data-index="1">
+          <div class="photo-img" style="background-image: url('photos/CRE05333.webp')">
+            <div class="photo-overlay">
+              <span class="photo-label">🌄 Sunset</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="photo-item animate-on-scroll" data-index="2">
+          <div class="photo-img" style="background-image: url('photos/DSC_7011.webp')">
+            <div class="photo-overlay">
+              <span class="photo-label">⛵ Sea</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="photo-item animate-on-scroll" data-index="3">
+          <div class="photo-img" style="background-image: url('photos/IMG_6674.webp')">
+            <div class="photo-overlay">
+              <span class="photo-label">✨ Moment</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="photo-item animate-on-scroll" data-index="4">
+          <div class="photo-img" style="background-image: url('photos/IMG_6803.webp')">
+            <div class="photo-overlay">
+              <span class="photo-label">🌆 Street</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="photo-item animate-on-scroll" data-index="5">
+          <div class="photo-img" style="background-image: url('photos/IMG_6812.webp')">
+            <div class="photo-overlay">
+              <span class="photo-label">🌆 Street</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>Made with ☕ by <strong>Ivan Nandira</strong></p>
+      <p>&copy; 2026</p>
+    </div>
+  </footer>
+
+  <!-- ===== Floating WhatsApp Button ===== -->
+  <a href="https://wa.me/6285609681260?text=Halo%20Ivan,%20saya%20mau%20konsultasi%20pembuatan%20website/sistem." class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
+    <span class="floating-wa-icon">💬</span>
+    <span class="floating-wa-text">Chat Ivan</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

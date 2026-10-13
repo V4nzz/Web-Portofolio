@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Neobrutalist Shadow -->
+  <rect x="8" y="8" width="52" height="52" rx="12" fill="#1a1a1a" />
+  <!-- Yellow Badge Card -->
+  <rect x="4" y="4" width="52" height="52" rx="12" fill="#ffe156" stroke="#1a1a1a" stroke-width="4" />
+  <!-- Letter V -->
+  <path d="M18 16 L28 42 L36 42 L46 16 L38 16 L32 34 L26 16 Z" fill="#1a1a1a" />
+  <!-- Accent Dot -->
+  <circle cx="44" cy="40" r="3.5" fill="#1a1a1a" />
+</svg>
