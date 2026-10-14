@@ -366,19 +366,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorRing = document.getElementById('cursorRing');
     const cursorText = document.getElementById('cursorText');
 
-    // Guard: Pastikan Three.js tersedia, elemen ada, dan bukan layar mobile (<768px)
+    // Guard: Pastikan Three.js tersedia & elemen ada
     if (!canvas || !heroSection || typeof THREE === 'undefined') return;
-    if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    /* --- 1. Palet Warna Asli Vanz Studio (Vibrant Bold Pop) --- */
+    // Deteksi ukuran layar untuk penyesuaian performa & posisi
+    const isMobile = () => window.innerWidth < 768;
+    const isTablet = () => window.innerWidth >= 768 && window.innerWidth < 1024;
+
+    /* --- 1. Palet Warna --- */
     const PALETTE = {
-      yellow: 0xffe156, // Bold Cyber Yellow
-      blue:   0x38bdf8, // Vibrant Sky Blue
-      pink:   0xf43f5e, // Punchy Hot Pink
-      green:  0x22c55e, // Vivid Emerald Green
-      purple: 0xa855f7, // Deep Violet
+      yellow: 0xffe156,
+      blue:   0x38bdf8,
+      pink:   0xf43f5e,
+      green:  0x22c55e,
+      purple: 0xa855f7,
       black:  0x1a1a1a,
       white:  0xffffff
     };
@@ -395,18 +397,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let { width, height } = getStageSize();
 
+    // Dynamic Camera Distance berdasarkan lebar layar
+    const getDynamicCameraZ = () => {
+      if (window.innerWidth < 480) return 9.5;
+      if (window.innerWidth < 768) return 11.0;
+      if (window.innerWidth < 1024) return 12.0;
+      return 12.5;
+    };
+
     const camera = new THREE.PerspectiveCamera(44, width / height, 0.1, 100);
-    camera.position.set(0, 0, 12.5);
+    camera.position.set(0, 0, getDynamicCameraZ());
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
-      antialias: true,
+      antialias: !isMobile(),
       powerPreference: 'high-performance'
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile() ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
+
 
     /* --- 3. Lighting Merata agar Warna Solid & Pop --- */
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
@@ -778,25 +789,52 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     heroVisibilityObserver.observe(heroSection);
 
-    /* --- 11. Responsivitas Layar & Mobile Cutoff (<768px) --- */
+    /* --- 11. Responsivitas Universal — Scale posisi berdasarkan lebar layar --- */
     const updateLayoutPositions = (viewportWidth) => {
-      const spreadX = viewportWidth < 1200 ? 0.88 : 1.0;
+      // Makin kecil layar, makin dipersempit agar elemen tidak keluar viewport
+      let spreadX, spreadY;
+      if (viewportWidth < 480) {
+        spreadX = 0.45; spreadY = 0.55;
+      } else if (viewportWidth < 768) {
+        spreadX = 0.58; spreadY = 0.70;
+      } else if (viewportWidth < 1024) {
+        spreadX = 0.78; spreadY = 0.88;
+      } else if (viewportWidth < 1200) {
+        spreadX = 0.88; spreadY = 0.95;
+      } else {
+        spreadX = 1.0; spreadY = 1.0;
+      }
       interactiveGroups.forEach((group, idx) => {
         const cfgPos = shapeConfigs[idx].position;
         group.userData.basePos.x = cfgPos[0] * spreadX;
+        group.userData.basePos.y = cfgPos[1] * spreadY;
       });
+      // Update camera Z juga saat resize
+      camera.position.z = getDynamicCameraZ();
+      camera.updateProjectionMatrix();
     };
 
     updateLayoutPositions(width);
 
+    // Touch events untuk parallax di HP (menggantikan mouse)
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const rect = heroSection.getBoundingClientRect();
+      const nx = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+      targetMouse.x = nx * 0.5;
+      targetMouse.y = ny * 0.5;
+    }, { passive: true });
+
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 768) return;
       const newSize = getStageSize();
       width = newSize.width;
       height = newSize.height;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile() ? 1.5 : 2));
       updateLayoutPositions(width);
     });
 
@@ -806,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const animate3D = () => {
       requestAnimationFrame(animate3D);
 
-      if (!isHeroVisible || window.innerWidth < 768) return;
+      if (!isHeroVisible) return;
 
       const elapsed = clock.getElapsedTime();
 
@@ -967,7 +1005,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const statsPopup = document.getElementById('retroQuickStats');
 
     if (!stage || !canvas || typeof THREE === 'undefined') return;
-    if (window.innerWidth < 768) return;
+
+    const isMobile = () => window.innerWidth < 768;
 
     const toonGrad = createSharedToonGradient();
     const makeToonMat = (hex) => new THREE.MeshToonMaterial({ color: hex, gradientMap: toonGrad });
@@ -976,8 +1015,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = stage.clientWidth || 440;
     let height = stage.clientHeight || 340;
 
+    // Kamera mundur lebih jauh di layar kecil agar PC terlihat penuh
+    const getDynamicCamZ = () => {
+      if (window.innerWidth < 480) return 9.5;
+      if (window.innerWidth < 768) return 8.2;
+      return 7.2;
+    };
+
     const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
-    camera.position.set(0, 0.35, 7.2);
+    camera.position.set(0, 0.35, getDynamicCamZ());
     camera.lookAt(0, -0.15, 0);
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -1207,7 +1253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    stage.addEventListener('click', toggleStats);
+    stage.addEventListener('touchstart', toggleStats, { passive: true });
 
     let isVisible = true;
     const observer = new IntersectionObserver((entries) => {
@@ -1217,11 +1263,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.05 });
     observer.observe(stage);
 
+    // Touch tilt untuk HP
+    stage.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const rect = stage.getBoundingClientRect();
+      const nx = ((touch.clientX - (rect.left + rect.width / 2)) / rect.width) * 2;
+      const ny = ((touch.clientY - (rect.top + rect.height / 2)) / rect.height) * 2;
+      targetRotY = -0.15 + nx * 0.35;
+      targetRotX = ny * 0.20;
+    }, { passive: true });
+
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 768) return;
       width = stage.clientWidth || 440;
       height = stage.clientHeight || 340;
       camera.aspect = width / height;
+      camera.position.z = getDynamicCamZ();
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     });
@@ -1229,7 +1286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clock = new THREE.Clock();
     const animate = () => {
       requestAnimationFrame(animate);
-      if (!isVisible || window.innerWidth < 768) return;
+      if (!isVisible) return;
       const t = clock.getElapsedTime();
 
       drawCRTScreen(t);
@@ -1271,7 +1328,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeLinkEl = document.getElementById('carouselActiveLink');
 
     if (!stage || !canvas || typeof THREE === 'undefined') return;
-    if (window.innerWidth < 768) return;
+
+    const isMobile = () => window.innerWidth < 768;
 
     const PROJECTS_DATA = [
       {
@@ -1322,12 +1380,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = stage.clientWidth || 1000;
     let height = stage.clientHeight || 410;
 
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 50);
-    camera.position.set(0, 0.35, 7.6);
+    // Kamera lebih mundur di layar kecil agar semua kartu terlihat
+    const getDynamicCamZ = () => {
+      if (window.innerWidth < 480) return 11.5;
+      if (window.innerWidth < 768) return 10.0;
+      if (window.innerWidth < 1024) return 8.5;
+      return 7.6;
+    };
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 50);
+    camera.position.set(0, 0.35, getDynamicCamZ());
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile() });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile() ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.95));
@@ -1536,10 +1602,10 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(stage);
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 768) return;
       width = stage.clientWidth || 1000;
       height = stage.clientHeight || 410;
       camera.aspect = width / height;
+      camera.position.z = getDynamicCamZ();
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     });
@@ -1547,7 +1613,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clock = new THREE.Clock();
     const animate = () => {
       requestAnimationFrame(animate);
-      if (!isVisible || window.innerWidth < 768) return;
+      if (!isVisible) return;
       const t = clock.getElapsedTime();
 
       currentAngle += (targetAngle - currentAngle) * 0.085;
@@ -1590,7 +1656,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailDesc = document.getElementById('techNodeDesc');
 
     if (!stage || !canvas || typeof THREE === 'undefined') return;
-    if (window.innerWidth < 768) return;
+
+    const isMobile = () => window.innerWidth < 768;
 
     const TECH_NODES = [
       {
@@ -1650,12 +1717,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = stage.clientWidth || 620;
     let height = stage.clientHeight || 390;
 
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-    camera.position.set(0, 0, 7.8);
+    const getDynamicCamZ = () => {
+      if (window.innerWidth < 480) return 12.0;
+      if (window.innerWidth < 768) return 10.5;
+      if (window.innerWidth < 1024) return 9.0;
+      return 7.8;
+    };
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 0, getDynamicCamZ());
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile() });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile() ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.9));
@@ -1866,10 +1940,10 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(stage);
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 768) return;
       width = stage.clientWidth || 620;
       height = stage.clientHeight || 390;
       camera.aspect = width / height;
+      camera.position.z = getDynamicCamZ();
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     });
@@ -1877,7 +1951,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clock = new THREE.Clock();
     const animate = () => {
       requestAnimationFrame(animate);
-      if (!isVisible || window.innerWidth < 768) return;
+      if (!isVisible) return;
       const t = clock.getElapsedTime();
 
       if (!isDragging) {

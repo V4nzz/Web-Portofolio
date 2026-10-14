@@ -1831,12 +1831,9 @@ h1, h2, h3, h4 {
   }
 }
 
-/* Non-aktifkan Canvas 3D & Tombol Trigger di Layar HP/Mobile (<768px) */
-@media (max-width: 767px) {
-  .hero-3d-stage,
-  .brutalist-3d-pill {
-    display: none !important;
-  }
+/* Hero 3D canvas berjalan di semua ukuran layar */
+.hero-3d-stage {
+  pointer-events: none; /* Klik via raycaster tetap bisa */
 }
 
 /* ============================================================
@@ -2144,7 +2141,7 @@ h1, h2, h3, h4 {
   box-shadow: 4px 4px 0 var(--clr-border);
 }
 
-/* Tablet Layout */
+/* Tablet Layout (768px – 960px): Stack menjadi vertikal */
 @media (max-width: 960px) {
   .terminal-station-grid {
     grid-template-columns: 1fr;
@@ -2154,7 +2151,8 @@ h1, h2, h3, h4 {
   }
 }
 
-/* Hide redundant skills-grid & projects-grid on desktop since 3D WebGL modules are the star */
+/* === UNIVERSAL RESPONSIVE 3D === */
+/* Desktop (≥768px): Sembunyikan HTML grid karena 3D WebGL sudah tampil */
 @media (min-width: 768px) {
   #skills .skills-grid,
   #projects .projects-grid {
@@ -2162,16 +2160,67 @@ h1, h2, h3, h4 {
   }
 }
 
-/* Fallback Aman di Layar HP (<768px): Sembunyikan Stage WebGL & Gunakan HTML Asli */
+/* Mobile (<768px): 3D tetap tampil, layout dirapikan secara vertikal */
 @media (max-width: 767px) {
-  .retro-station-card,
-  .project-carousel-wrapper,
-  .tech-sphere-wrapper {
-    display: none !important;
+  /* Terminal & PC: tumpuk vertikal rapi */
+  .terminal-station-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
+
+  /* Retro 3D Workstation: tampil lebih ramping di HP */
+  .retro-station-card {
+    min-height: 280px;
+  }
+
+  /* Quick stats: 2 kolom di HP agar tidak terlalu sempit */
+  .retro-quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Project Carousel Stage: tinggi lebih kecil di HP */
+  .project-carousel-stage {
+    height: 300px;
+  }
+
+  /* Carousel controls: tumpuk vertikal */
+  .project-carousel-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  /* Tech Sphere: stack vertikal di HP */
+  .tech-sphere-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tech sphere stage: lebih kecil di HP */
+  .tech-sphere-stage {
+    min-height: 280px;
+  }
+
+  /* HTML grid tetap tersembunyi — 3D sudah cover semua */
   #skills .skills-grid,
   #projects .projects-grid {
-    display: grid !important;
+    display: none !important;
+  }
+}
+
+/* Extra Small (<480px): kurangi padding & font untuk layar paling kecil */
+@media (max-width: 479px) {
+  .retro-station-card {
+    min-height: 240px;
+  }
+  .project-carousel-stage {
+    height: 260px;
+  }
+  .tech-sphere-stage {
+    min-height: 250px;
+  }
+  .stage-floating-hint {
+    font-size: 0.6rem;
+    padding: 3px 10px;
   }
 }
 
