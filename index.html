@@ -54,6 +54,11 @@
 
   <!-- ===== Hero Section ===== -->
   <section id="hero" class="hero">
+    <!-- Interactive 3D Neobrutalist WebGL Canvas Layer -->
+    <div class="hero-3d-stage" id="hero3dStage" aria-hidden="true">
+      <canvas id="hero3dCanvas"></canvas>
+    </div>
+
     <div class="container hero-content">
       <!-- Left: Text content -->
       <div class="hero-left">
@@ -79,6 +84,11 @@
 
       <!-- Right: Profile card + Stats -->
       <div class="hero-right animate-on-scroll">
+        <!-- Interactive 3D Trigger Pill -->
+        <button type="button" class="brutalist-3d-pill" id="trigger3dPop" title="Klik untuk memicu efek membal & stiker 3D!">
+          🎲 Pop 3D!
+        </button>
+
         <!-- Profile Card -->
         <div class="profile-card">
           <div class="profile-img-wrap">
@@ -148,34 +158,52 @@
   <!-- ===== Interactive Terminal Section ===== -->
   <section class="section terminal-section" style="padding-top: 3.5rem; padding-bottom: 2rem;">
     <div class="container">
-      <div class="terminal-container animate-on-scroll">
-        <div class="terminal-section-badge">⚡ Developer Console (Interactive)</div>
-        <div class="hero-terminal">
-          <div class="terminal-bar">
-            <div class="terminal-dots">
-              <span class="dot dot--red"></span>
-              <span class="dot dot--yellow"></span>
-              <span class="dot dot--green"></span>
+      <div class="terminal-station-grid animate-on-scroll">
+        <!-- Kolom Kiri: Developer Console (Terminal Asli) -->
+        <div class="terminal-container">
+          <div class="terminal-section-badge">⚡ Developer Console (Interactive)</div>
+          <div class="hero-terminal">
+            <div class="terminal-bar">
+              <div class="terminal-dots">
+                <span class="dot dot--red"></span>
+                <span class="dot dot--yellow"></span>
+                <span class="dot dot--green"></span>
+              </div>
+              <div class="terminal-title">ivan@dev-box: ~ (zsh)</div>
             </div>
-            <div class="terminal-title">ivan@dev-box: ~ (zsh)</div>
+            <div class="terminal-body" id="terminalBody">
+              <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cmd">ivan --welcome</span></div>
+              <div class="terminal-output" id="terminalOutput">
+                <p class="t-text">✨ Welcome! Fullstack Engineer specializing in Next.js 14, Cloud APIs &amp; Custom Systems.</p>
+                <p class="t-hint">💡 Klik tombol di bawah atau ketik perintah untuk eksplorasi:</p>
+              </div>
+              <div class="terminal-input-row">
+                <span class="t-prompt">$</span>
+                <input type="text" id="terminalInput" class="terminal-input" placeholder="type 'ivan --help'..." autocomplete="off" spellcheck="false" />
+              </div>
+            </div>
+            <div class="terminal-chips">
+              <button class="t-chip" data-cmd="ivan --skills">⚡ --skills</button>
+              <button class="t-chip" data-cmd="ivan --status">🎯 --status</button>
+              <button class="t-chip" data-cmd="ivan --projects">💼 --projects</button>
+              <button class="t-chip" data-cmd="ivan --contact">💬 --contact</button>
+              <button class="t-chip t-chip--clear" data-cmd="clear">🧹 clear</button>
+            </div>
           </div>
-          <div class="terminal-body" id="terminalBody">
-            <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cmd">ivan --welcome</span></div>
-            <div class="terminal-output" id="terminalOutput">
-              <p class="t-text">✨ Welcome! Fullstack Engineer specializing in Next.js 14, Cloud APIs &amp; Custom Systems.</p>
-              <p class="t-hint">💡 Klik tombol di bawah atau ketik perintah untuk eksplorasi:</p>
+        </div>
+
+        <!-- Kolom Kanan: 3D Retro Developer Workstation -->
+        <div class="retro-station-wrapper">
+          <div class="retro-station-card" id="retroStationStage" title="Klik monitor 3D untuk melihat Quick Stats Project!">
+            <div class="retro-station-badge">🖥️ 3D DEV WORKSTATION — CLICK PC!</div>
+            <canvas id="retroStationCanvas"></canvas>
+            <!-- Quick Stats Pop-up saat Monitor 3D Diklik (Clickable Links) -->
+            <div class="retro-quick-stats" id="retroQuickStats">
+              <a href="https://cbt.solotechnopark.id/" target="_blank" rel="noopener noreferrer" class="rq-item rq-item--yellow">⚡ <strong>CBT Solo:</strong> Anti-Cheat ↗</a>
+              <a href="http://ppdb.smamuadmetro.sch.id/" target="_blank" rel="noopener noreferrer" class="rq-item rq-item--blue">🏫 <strong>MuAD:</strong> PPDB ↗</a>
+              <a href="http://keuangan.smamuadmetro.sch.id/" target="_blank" rel="noopener noreferrer" class="rq-item rq-item--blue">💳 <strong>MuAD:</strong> SPP ↗</a>
+              <a href="https://kedaiatap.vercel.app/" target="_blank" rel="noopener noreferrer" class="rq-item rq-item--pink">☕ <strong>Kedai Atap:</strong> Order ↗</a>
             </div>
-            <div class="terminal-input-row">
-              <span class="t-prompt">$</span>
-              <input type="text" id="terminalInput" class="terminal-input" placeholder="type 'ivan --help'..." autocomplete="off" spellcheck="false" />
-            </div>
-          </div>
-          <div class="terminal-chips">
-            <button class="t-chip" data-cmd="ivan --skills">⚡ --skills</button>
-            <button class="t-chip" data-cmd="ivan --status">🎯 --status</button>
-            <button class="t-chip" data-cmd="ivan --projects">💼 --projects</button>
-            <button class="t-chip" data-cmd="ivan --contact">💬 --contact</button>
-            <button class="t-chip t-chip--clear" data-cmd="clear">🧹 clear</button>
           </div>
         </div>
       </div>
@@ -304,6 +332,21 @@
       </div>
       <h2 class="section-heading animate-on-scroll">Tools &amp; technologies I work with</h2>
 
+      <!-- ===== MODUL 3 (KONSEP 4): Interactive 3D Tech Constellation Sphere ===== -->
+      <div class="tech-sphere-wrapper animate-on-scroll">
+        <div class="tech-sphere-stage" id="techSphereStage">
+          <div class="stage-floating-hint">🌐 Drag untuk memutar • Hover node untuk detail</div>
+          <canvas id="techSphereCanvas"></canvas>
+        </div>
+        <div class="tech-sphere-hud" id="techSphereHud">
+          <span class="tech-hud-badge" id="techNodeBadge">FRONTEND &amp; SSR CORE</span>
+          <h3 class="tech-hud-title" id="techNodeTitle">Next.js 14</h3>
+          <p class="tech-hud-desc" id="techNodeDesc">
+            Arahkan kursor atau klik salah satu satelit node 3D di samping untuk menyorot arsitektur teknologi yang saya gunakan di Vanz Studio.
+          </p>
+        </div>
+      </div>
+
       <div class="skills-grid">
         <div class="skill-card skill-card--yellow animate-on-scroll">
           <h3>🌐 Modern Web &amp; Frontend</h3>
@@ -349,6 +392,22 @@
         <span class="section-tag">Projects</span>
       </div>
       <h2 class="section-heading animate-on-scroll">Things I've built ✨</h2>
+
+      <!-- ===== MODUL 2 (KONSEP 3): Spatial 3D Kinetic Project Carousel ===== -->
+      <div class="project-carousel-wrapper animate-on-scroll">
+        <div class="project-carousel-stage" id="projectCarouselStage">
+          <div class="stage-floating-hint">🖐️ Drag horizontal / Scroll Wheel / Klik kartu untuk memutar ruang 3D</div>
+          <canvas id="projectCarouselCanvas"></canvas>
+        </div>
+        <div class="project-carousel-controls">
+          <button type="button" class="btn btn-secondary carousel-nav-btn" id="carouselPrevBtn">← Prev</button>
+          <div class="carousel-active-info">
+            <span class="carousel-active-title" id="carouselActiveTitle">🖥️ Solo Technopark CBT — FLAGSHIP SYSTEM</span>
+            <a href="https://cbt.solotechnopark.id/" target="_blank" rel="noopener noreferrer" class="carousel-active-link" id="carouselActiveLink">Buka Live Project ↗</a>
+          </div>
+          <button type="button" class="btn btn-primary carousel-nav-btn" id="carouselNextBtn">Next →</button>
+        </div>
+      </div>
 
       <div class="projects-grid">
         <!-- Project 1: Solo Technopark CBT -->
@@ -473,6 +532,8 @@
     <span class="cursor-text" id="cursorText"></span>
   </div>
 
-  <script src="script.js?v=2"></script>
+  <!-- Three.js WebGL CDN (Modern Vanilla Tanpa Bundler) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

@@ -311,6 +311,9 @@ h1, h2, h3, h4 {
   position: relative;
   padding-top: var(--nav-height);
   overflow: hidden;
+  background-color: var(--clr-bg);
+  background-image: radial-gradient(rgba(26, 26, 26, 0.12) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
 }
 
 .hero-content {
@@ -1752,3 +1755,423 @@ h1, h2, h3, h4 {
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+/* ============================================================
+   NEOBRUTALIST 3D WEBGL HERO STAGE & INTERACTIVE CONTROLS
+   ============================================================ */
+/* Container Canvas 3D menyatu penuh dengan Hero Section */
+.hero-3d-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Klik dideteksi via Raycaster tanpa menghalangi tombol HTML */
+  overflow: hidden;
+}
+
+#hero3dCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Tombol Pill Brutalist pemicu efek Pop 3D di dekat Profile Card */
+.brutalist-3d-pill {
+  position: absolute;
+  top: -22px;
+  left: 42px;
+  z-index: 12;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--clr-black);
+  background: var(--clr-pink);
+  border: var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.brutalist-3d-pill:hover {
+  background: var(--clr-yellow);
+  transform: translate(-2px, -2px) rotate(-3deg);
+  box-shadow: var(--shadow);
+}
+
+.brutalist-3d-pill:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--clr-border);
+}
+
+/* State Kursor Brutalist saat Hover di atas Objek 3D */
+@media (pointer: fine) {
+  .cursor-ring.cursor-ring--3d-active {
+    width: 54px;
+    height: 54px;
+    background: var(--clr-yellow);
+    border: 3px solid var(--clr-black);
+    box-shadow: 3px 3px 0 var(--clr-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  }
+
+  .cursor-ring.cursor-ring--3d-active .cursor-text {
+    display: block;
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--clr-black);
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Non-aktifkan Canvas 3D & Tombol Trigger di Layar HP/Mobile (<768px) */
+@media (max-width: 767px) {
+  .hero-3d-stage,
+  .brutalist-3d-pill {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   VANZ STUDIO — 3 MODUL 3D WEBGL NEOBRUTALISM STYLING
+   ============================================================ */
+
+/* --- Layout Berdampingan: Terminal Console & 3D Retro Workstation --- */
+.terminal-station-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.terminal-station-grid .terminal-container {
+  margin: 0;
+  max-width: none;
+}
+
+.terminal-station-grid .hero-terminal {
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-station-grid .terminal-body {
+  min-height: 180px;
+  max-height: 240px;
+}
+
+.retro-station-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- MODUL 1: Retro 3D Workstation --- */
+.retro-station-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 410px;
+  background: var(--clr-yellow-lt);
+  background-image: radial-gradient(rgba(26, 26, 26, 0.14) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 3;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.retro-station-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-lg);
+}
+
+#retroStationCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.retro-station-badge {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 10;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--clr-yellow);
+  color: var(--clr-black);
+  border: 2px solid var(--clr-border);
+  border-radius: 100px;
+  padding: 4px 14px;
+  box-shadow: 2px 2px 0 var(--clr-border);
+  pointer-events: none;
+}
+
+.retro-quick-stats {
+  position: absolute;
+  bottom: 12px;
+  left: 10px;
+  right: 10px;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: auto;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.retro-quick-stats.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.rq-item {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 8px 6px;
+  border: 2px solid var(--clr-border);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--clr-border);
+  color: var(--clr-black);
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  line-height: 1.25;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rq-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--clr-border);
+}
+
+.rq-item--yellow { background: var(--clr-yellow); }
+.rq-item--blue   { background: var(--clr-blue); }
+.rq-item--pink   { background: var(--clr-pink); }
+
+/* --- MODUL 2: Spatial 3D Kinetic Project Carousel (#projects) --- */
+.project-carousel-wrapper {
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.project-carousel-stage {
+  position: relative;
+  width: 100%;
+  height: 410px;
+  background: var(--clr-bg);
+  background-image: radial-gradient(rgba(26, 26, 26, 0.12) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.project-carousel-stage.is-dragging {
+  cursor: grabbing;
+}
+
+#projectCarouselCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stage-floating-hint {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 4;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  background: var(--clr-yellow);
+  color: var(--clr-black);
+  border: 2px solid var(--clr-border);
+  border-radius: 100px;
+  padding: 4px 14px;
+  box-shadow: 3px 3px 0 var(--clr-border);
+  pointer-events: none;
+}
+
+.project-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--clr-white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.carousel-nav-btn {
+  padding: 10px 20px;
+  font-size: var(--fs-xs);
+}
+
+.carousel-active-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.carousel-active-title {
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  font-size: var(--fs-base);
+  color: var(--clr-black);
+}
+
+.carousel-active-link {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 6px 14px;
+  background: var(--clr-green);
+  border: 2px solid var(--clr-border);
+  border-radius: 100px;
+  box-shadow: 2px 2px 0 var(--clr-border);
+}
+
+.carousel-active-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--clr-border);
+}
+
+/* --- MODUL 3: Interactive 3D Tech Constellation Sphere (#skills) --- */
+.tech-sphere-wrapper {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-sphere-stage {
+  position: relative;
+  width: 100%;
+  height: 390px;
+  background: var(--clr-bg);
+  background-image: radial-gradient(rgba(26, 26, 26, 0.12) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: grab;
+}
+
+.tech-sphere-stage.is-dragging {
+  cursor: grabbing;
+}
+
+#techSphereCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tech-sphere-hud {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--clr-white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.tech-hud-badge {
+  align-self: flex-start;
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 5px 14px;
+  background: var(--clr-yellow);
+  border: 2px solid var(--clr-border);
+  border-radius: 100px;
+  box-shadow: 2px 2px 0 var(--clr-border);
+  margin-bottom: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.tech-hud-title {
+  font-size: var(--fs-2xl);
+  margin-bottom: 0.75rem;
+}
+
+.tech-hud-desc {
+  font-size: var(--fs-base);
+  color: var(--clr-text-muted);
+  line-height: 1.65;
+}
+
+/* Efek Sorot Pill HTML saat Node 3D di-Hover */
+.pill.pill--highlighted {
+  background: var(--clr-yellow) !important;
+  color: var(--clr-black) !important;
+  transform: translate(-3px, -3px);
+  box-shadow: 4px 4px 0 var(--clr-border);
+}
+
+/* Tablet Layout */
+@media (max-width: 960px) {
+  .terminal-station-grid {
+    grid-template-columns: 1fr;
+  }
+  .tech-sphere-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hide redundant skills-grid & projects-grid on desktop since 3D WebGL modules are the star */
+@media (min-width: 768px) {
+  #skills .skills-grid,
+  #projects .projects-grid {
+    display: none !important;
+  }
+}
+
+/* Fallback Aman di Layar HP (<768px): Sembunyikan Stage WebGL & Gunakan HTML Asli */
+@media (max-width: 767px) {
+  .retro-station-card,
+  .project-carousel-wrapper,
+  .tech-sphere-wrapper {
+    display: none !important;
+  }
+  #skills .skills-grid,
+  #projects .projects-grid {
+    display: grid !important;
+  }
+}
+
